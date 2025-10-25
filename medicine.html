@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cairo Family Hospital - Online Pharmacy</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Cairo Family Hospital, pharmacy, order medicine, prescription, Ruiru, Kenya, Mydawa alternative" name="keywords">
+    <meta content="Order medicines online from Cairo Family Hospital. Upload your prescription, browse medications, and get fast delivery or pickup. Trusted healthcare at your fingertips." name="description">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet"> 
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* WhatsApp Floating Button with Online Indicator */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        .whatsapp-button {
+            background-color: #25D366;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-button-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .whatsapp-icon {
+            font-size: 30px;
+            color: white;
+        }
+        .online-indicator {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 12px;
+            height: 12px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            border: 2px solid white;
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        /* WhatsApp Services Selection Box */
+        .whatsapp-services {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 280px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 15px;
+            z-index: 1000;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .chat-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .chat-bubble {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 18px;
+            margin-left: 12px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+        }
+        .whatsapp-services label {
+            display: flex;
+            align-items: center;
+            border: 2px solid #800075;
+            border-radius: 25px;
+            padding: 6px 10px;
+            color: #800075;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }
+        .whatsapp-services input[type="checkbox"] {
+            display: none;
+        }
+        .whatsapp-services input[type="checkbox"]:checked + span {
+            background-color: #800075;
+            color: white;
+            border-radius: 20px;
+            padding: 4px 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        #whatsappConfirm {
+            background-color: #800075;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 9px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s ease;
+            text-align: center;
+        }
+        #whatsappConfirm:hover {
+            background-color: #6a006a;
+            transform: translateY(-1px);
+        }
+
+        /* Category Postcards */
+        .category-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(128, 0, 117, 0.15);
+        }
+        .category-card-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        .category-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .category-card:hover .category-card-img img {
+            transform: scale(1.1);
+        }
+        .category-card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .category-card h5 {
+            color: #800075;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        .category-card p {
+            font-size: 0.95rem;
+            color: #555;
+            flex: 1;
+        }
+        .btn-category {
+            background-color: #800075;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.2s ease;
+        }
+        .btn-category:hover {
+            background-color: #6a006a;
+            transform: scale(1.03);
+        }
+
+        /* Frequently Ordered */
+        .freq-item {
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            background: #f9f4f8;
+            transition: all 0.2s;
+        }
+        .freq-item:hover {
+            background: #800075;
+            color: white;
+        }
+        /* Prescription Upload Section */
+.prescription-form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin: 50px 0;
+}
+.prescription-form .form-control {
+    border-radius: 8px;
+    padding: 12px;
+}
+.prescription-form label {
+    font-weight: 500;
+    color: #333;
+}
+.btn-upload {
+    background-color: #800075;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 10px;
+    transition: 0.2s ease;
+}
+.btn-upload:hover {
+    background-color: #6a006a;
+}
+
+/* Order by WhatsApp Section */
+.whatsapp-order-section {
+    background: #f0f7ff;
+    padding: 40px 20px;
+    border-radius: 15px;
+    border: 2px solid #d0e8ff;
+    margin: 50px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.whatsapp-order-section:hover {
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.1);
+    transform: translateY(-5px);
+}
+.whatsapp-order-icon {
+    font-size: 3rem;
+    color: #25D366;
+    margin-bottom: 15px;
+}
+.whatsapp-order-title {
+    color: #0056b3;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+.whatsapp-order-desc {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+.btn-whatsapp-order {
+    background-color: #25D366;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s ease;
+}
+.btn-whatsapp-order:hover {
+    background-color: #128C7E;
+    transform: scale(1.05);
+}
+.btn-whatsapp-order i {
+    font-size: 1.4rem;
+}
+    </style>
+</head>
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
+        <div class="row gx-0 align-items-center" style="height: 45px;">
+            <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+                <div class="d-flex flex-wrap">
+                    <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Ruiru Gwa Cairo</a>
+                    <a href="tel:0728697219" class="text-light me-4"><i class="fas fa-phone-alt text-primary me-2"></i>0728 697 219</a>
+                    <a href="tel:+254758833863" class="text-light me-0"><i class="fas fa-phone-alt text-primary me-2"></i>+254 758 833 863</a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <div class="d-flex align-items-center justify-content-end">
+                    <a href="https://www.facebook.com/profile.php?id=100094585454733" class="btn btn-light btn-square border rounded-circle nav-fill me-3" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@cairo.family.hosp" class="btn btn-light btn-square border rounded-circle nav-fill me-3" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/cairo_family_hospital?igsh=bmVicmp4ZXVxYjRy" class="btn btn-light btn-square border rounded-circle nav-fill me-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0 d-flex align-items-center">
+                <img src="img/cairo.jpg" alt="Cairo Family Hospital Logo" height="50">
+                <span class="text-primary h1 mb-0 ms-2"><i class="fas fa-star-of-life me-2"></i>Cairo Family Hospital</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About Us</a>
+                    <a href="service.html" class="nav-item nav-link">Services</a>
+                    <a href="medicine.html" class="nav-item nav-link active">Pharmacy</a>
+                    <a href="hybrid-retailer.html" class="nav-item nav-link active">Hybrid Retailer</a>
+                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="order.html" class="nav-item nav-link">Order</a>
+                </div>
+                <a href="https://wa.me/254758833863?text=Hello%20Cairo%20Family%20Hospital,%20I%20would%20like%20to%20book%20an%20appointment." class="btn btn-primary rounded-pill text-white py-2 px-4" target="_blank">Book Appointment</a>
+            </div>
+        </nav>
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Pharmacy</h3>
+                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active text-primary">Pharmacy</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Header End -->
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Pharmacy Section Start -->
+    <section class="medicine-section">
+        <div class="container">
+            <div class="section-title mb-5 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="sub-style mb-4">
+                    <h4 class="sub-title text-primary px-3 mx-auto">Order Medicines Online</h4>
+                </div>
+                <h1 class="display-3 mb-4">Fast, Reliable Pharmacy Service</h1>
+                <p class="mb-0">Browse our catalog or upload your prescription. We’ll confirm availability and arrange delivery or pickup.</p>
+            </div>
+            <!-- Disclaimer Section -->
+<div class="container mt-4 mb-5">
+    <div class="alert alert-warning rounded-3 shadow-sm p-4" role="alert">
+        <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2 text-warning"></i>Important Notice</h5>
+        <hr class="my-3">
+        <p class="mb-0 small">
+            <strong>Prescription Medicines:</strong> We do not sell prescription-only medicines without a valid doctor's prescription. 
+            All prescriptions are verified by our licensed pharmacist before processing.
+        </p>
+        <p class="mb-0 small mt-2">
+            <strong>Privacy & Security:</strong> Your personal and medical information is kept confidential and secure.
+        </p>
+        <p class="mb-0 small mt-2">
+            <strong>Not a Substitute:</strong> This service does not replace a consultation with a healthcare provider. 
+            Please consult your doctor for diagnosis and treatment.
+        </p>
+    </div>
+</div>
+
+            <!-- Frequently Ordered -->
+            <h3 class="mt-5">Frequently Inquired Categories</h3>
+            <div class="row g-3 mb-5">
+                <div class="col-6 col-md-3"><div class="freq-item">Painkillers</div></div>
+                <div class="col-6 col-md-3"><div class="freq-item">Antibiotics</div></div>
+                <div class="col-6 col-md-3"><div class="freq-item">Diabetes</div></div>
+                <div class="col-6 col-md-3"><div class="freq-item">Hypertension</div></div>
+            </div>
+
+            <!-- Medicine Catalog -->
+            <div class="row g-4 justify-content-center" id="medicineGrid">
+                <!-- Category: Painkillers -->
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="category-card">
+                        <div class="category-card-img">
+                            <img src="img/painkillers.png" alt="Painkillers">
+                        </div>
+                        <div class="category-card-body">
+                            <h5>Painkillers</h5>
+                            <p>For headaches, body pain, menstrual cramps, and fever relief.</p>
+                            <button class="btn-category" onclick="inquireCategory('Painkillers')">Inquire via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category: Antibiotics -->
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="category-card">
+                        <div class="category-card-img">
+                            <img src="img/antibiotics.png" alt="Antibiotics">
+                        </div>
+                        <div class="category-card-body">
+                            <h5>Antibiotics</h5>
+                            <p>For bacterial infections — requires valid prescription.</p>
+                            <button class="btn-category" onclick="inquireCategory('Antibiotics')">Inquire via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category: Joint & Muscle Care -->
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="category-card">
+                        <div class="category-card-img">
+                            <img src="img/joint care.png" alt="Joint & Muscle Care">
+                        </div>
+                        <div class="category-card-body">
+                            <h5>Joint & Muscle Care</h5>
+                            <p>For arthritis, sprains, back pain, and inflammation.</p>
+                            <button class="btn-category" onclick="inquireCategory('Joint & Muscle Care')">Inquire via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category: Cold & Cough -->
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="category-card">
+                        <div class="category-card-img">
+                            <img src="img/cough.png" alt="Cold & Cough">
+                        </div>
+                        <div class="category-card-body">
+                            <h5>Cold & Cough</h5>
+                            <p>Relief for congestion, sore throat, and respiratory symptoms.</p>
+                            <button class="btn-category" onclick="inquireCategory('Cold & Cough')">Inquire via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category: Digestive Health -->
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="category-card">
+                        <div class="category-card-img">
+                            <img src="img/digestive health.jpeg" alt="Digestive Health">
+                        </div>
+                        <div class="category-card-body">
+                            <h5>Digestive Health</h5>
+                            <p>For acid reflux, indigestion, constipation, and diarrhea.</p>
+                            <button class="btn-category" onclick="inquireCategory('Digestive Health')">Inquire via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category: Hypertension -->
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="category-card">
+                        <div class="category-card-img">
+                            <img src="img/Blood pressure image.jpeg" alt="Hypertension">
+                        </div>
+                        <div class="category-card-body">
+                            <h5>Hypertension</h5>
+                            <p>Medications for high blood pressure — requires prescription.</p>
+                            <button class="btn-category" onclick="inquireCategory('Hypertension')">Inquire via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category: Diabetes -->
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="category-card">
+                        <div class="category-card-img">
+                            <img src="img/diabetes.jpeg" alt="Diabetes">
+                        </div>
+                        <div class="category-card-body">
+                            <h5>Diabetes</h5>
+                            <p>Insulin, blood sugar monitors, and oral medications.</p>
+                            <button class="btn-category" onclick="inquireCategory('Diabetes')">Inquire via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category: Vitamins & Supplements -->
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="category-card">
+                        <div class="category-card-img">
+                            <img src="img/vitamins and supplements.png" alt="Vitamins & Supplements">
+                        </div>
+                        <div class="category-card-body">
+                            <h5>Vitamins & Supplements</h5>
+                            <p>Boost immunity, energy, and overall wellness.</p>
+                            <button class="btn-category" onclick="inquireCategory('Vitamins & Supplements')">Inquire via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pharmacy Section End -->
+
+   <!-- Prescription Upload Section -->
+    <section class="container prescription-form" id="uploadForm">
+        <div class="section-title text-center mb-4">
+            <h2 class="display-6">Submit Your Prescription</h2>
+            <p>Upload your doctor’s prescription and we’ll prepare your order.</p>
+        </div>
+        <form id="prescriptionForm" onsubmit="submitPrescription(event)">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="patientName" placeholder="Your Name" required>
+                        <label for="patientName">Patient Name</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="tel" class="form-control" id="patientPhone" placeholder="Phone Number" required>
+                        <label for="patientPhone">Phone Number</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="List of Medicines" id="medicinesList" style="height: 100px;"></textarea>
+                        <label for="medicinesList">Medicines Needed (Optional)</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="prescriptionImage" class="form-label">Upload Prescription (Image or PDF)</label>
+                    <input type="file" class="form-control" id="prescriptionImage" accept="image/*,.pdf">
+                    <small class="text-muted">You can describe the prescription instead.</small>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn-upload">Send to WhatsApp</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Order by WhatsApp Section -->
+    <section class="container">
+        <div class="whatsapp-order-section">
+            <div class="whatsapp-order-icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <h3 class="whatsapp-order-title">Can't Find Your Medicine?</h3>
+            <p class="whatsapp-order-desc">
+                No problem! Send us a message directly on WhatsApp.  
+                We’ll check availability, advise on alternatives, and arrange delivery.
+            </p>
+            <a href="https://wa.me/254758833863?text=Hello%20Cairo%20Family%20Hospital,%20I%20would%20like%20to%20inquire%20about%20a%20medicine." class="btn-whatsapp-order" target="_blank">
+                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+            </a>
+        </div>
+    </section>
+    <!-- Order by WhatsApp End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="text-white mb-4"><i class="fas fa-star-of-life me-3"></i>Cairo Family Hospital</h4>
+                        <p>Your trusted partner in healthcare, providing quality services for every stage of life.</p>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-share fa-2x text-white me-2"></i>
+                            <a class="btn btn-square btn-primary text-white rounded-circle mx-1" href="https://www.facebook.com/profile.php?id=100094585454733" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary text-white rounded-circle mx-1" href="https://www.tiktok.com/@cairo.family.hosp" target="_blank"><i class="fab fa-tiktok"></i></a>
+                            <a class="btn btn-square btn-primary text-white rounded-circle mx-1" href="https://www.instagram.com/cairo_family_hospital?igsh=bmVicmp4ZXVxYjRy" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Quick Links</h4>
+                        <a href="about.html"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                        <a href="service.html"><i class="fas fa-angle-right me-2"></i> Our Services</a>
+                        <a href="medicine.html"><i class="fas fa-angle-right me-2"></i> Pharmacy</a>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Popular Medicines</h4>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Paracetamol</a>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Amoxicillin</a>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Amlodipine</a>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Ventolin</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Contact Info</h4>
+                        <a href="#"><i class="fa fa-map-marker-alt me-2"></i> Ruiru Gwa Cairo</a>
+                        <a href="mailto:info@cairohospital.co.ke"><i class="fas fa-envelope me-2"></i> info@cairohospital.co.ke</a>
+                        <a href="tel:0728697219"><i class="fas fa-phone me-2"></i> 0728 697 219</a>
+                        <a href="tel:+254758833863"><i class="fas fa-phone me-2"></i> +254 758 833 863</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-md-0">
+                    <span class="text-white"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Cairo Family Hospital</a>, All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <button class="whatsapp-button" id="whatsappToggle">
+            <div class="whatsapp-button-container">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                <span class="online-indicator"></span>
+            </div>
+        </button>
+        <div class="whatsapp-services" id="whatsappServices">
+            <div class="chat-header">
+                <div class="whatsapp-button-container">
+                    <i class="fab fa-whatsapp whatsapp-icon"></i>
+                    <span class="online-indicator"></span>
+                </div>
+                <div class="chat-bubble">How can we help you today?</div>
+            </div>
+            <label><input type="checkbox" value="General Medicine"><span>General Medicine</span></label>
+            <label><input type="checkbox" value="Pediatrics"><span>Pediatrics</span></label>
+            <label><input type="checkbox" value="Maternity Care"><span>Maternity Care</span></label>
+            <label><input type="checkbox" value="Emergency Care"><span>Emergency Care</span></label>
+            <label><input type="checkbox" value="Dental"><span>Dental</span></label>
+            <label><input type="checkbox" value="Diagnostic Imaging"><span>Diagnostic Imaging</span></label>
+            <label><input type="checkbox" value="Pharmacy"><span>Pharmacy</span></label>
+            <button id="whatsappConfirm">Confirm Selection</button>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- Order Medicine via WhatsApp -->
+    <script>
+        function orderMedicine(name, price, dosage = '') {
+            const phone = "254758833863";
+            const message = encodeURIComponent(`Hello Cairo Family Hospital,
+I would like to order:
+- ${name} (KSh ${price})
+
+Dosage: ${dosage}
+Please confirm availability and delivery options.
+Thank you!`);
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        function submitPrescription(event) {
+            event.preventDefault();
+            const name = document.getElementById('patientName').value;
+            const phone = document.getElementById('patientPhone').value;
+            const medicines = document.getElementById('medicinesList').value;
+            const fileInput = document.getElementById('prescriptionImage');
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file uploaded';
+            const message = encodeURIComponent(`Hello Cairo Family Hospital,
+Prescription Submission:
+- Patient: ${name}
+- Phone: ${phone}
+- Medicines: ${medicines}
+- Prescription File: ${fileName}
+Please review and contact me for next steps.
+Thank you!`);
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        function searchMedicine() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.medicine-card');
+            cards.forEach(card => {
+                const title = card.querySelector('.medicine-card-title').innerText.toLowerCase();
+                const desc = card.querySelector('.medicine-card-desc').innerText.toLowerCase();
+                if (title.includes(input) || desc.includes(input)) {
+                    card.closest('.col-md-6, .col-lg-4, .col-xl-3').style.display = '';
+                } else {
+                    card.closest('.col-md-6, .col-lg-4, .col-xl-3').style.display = 'none';
+                }
+            });
+        }
+
+        // Allow search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchMedicine();
+        });
+    </script>
+
+    <!-- WhatsApp Service Selection Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('whatsappToggle');
+            const servicesBox = document.getElementById('whatsappServices');
+            const confirmBtn = document.getElementById('whatsappConfirm');
+
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                servicesBox.style.display = servicesBox.style.display === 'block' ? 'none' : 'block';
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!toggleBtn.contains(e.target) && !servicesBox.contains(e.target)) {
+                    servicesBox.style.display = 'none';
+                }
+            });
+
+            servicesBox.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            confirmBtn.addEventListener('click', () => {
+                const selected = Array.from(servicesBox.querySelectorAll('input[type="checkbox"]:checked'))
+                    .map(cb => cb.value)
+                    .join(', ');
+                if (selected) {
+                    const phone = "254758833863";
+                    const message = encodeURIComponent(`Hello Cairo Family Hospital,
+I'm interested in: ${selected}
+Name: 
+Phone: 
+`);
+                    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                    servicesBox.style.display = 'none';
+                } else {
+                    alert("Please select at least one service.");
+                }
+            });
+        });
+        function inquireCategory(category) {
+        const phone = "254758833863";
+        const message = encodeURIComponent(`Hello Cairo Family Hospital,
+I would like to inquire about:
+- ${category}
+
+Please share available options, pricing, and whether a prescription is needed.
+Thank you!`);
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    }
+
+    function submitPrescription(event) {
+        event.preventDefault();
+        const name = document.getElementById('patientName').value;
+        const phone = document.getElementById('patientPhone').value;
+        const medicines = document.getElementById('medicinesList').value;
+        const fileInput = document.getElementById('prescriptionImage');
+        const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file uploaded';
+        const message = encodeURIComponent(`Hello Cairo Family Hospital,
+Prescription Submission:
+- Patient: ${name}
+- Phone: ${phone}
+- Medicines: ${medicines}
+- Prescription File: ${fileName}
+Please review and contact me for next steps.
+Thank you!`);
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Cairo Family Hospital – Browse medicines by category. Genuine products, free delivery, secure checkout." />
+    <title>Shop by Category – Cairo Family Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: #f9f9f9; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* TOP BANNER */
+        .top-banner { background: #800075; color: white; text-align: center; padding: 8px; font-size: 14px; }
+
+        /* HEADER */
+        .header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 15px 0; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
+        .logo h1 { font-size: 24px; color: #800075; }
+        .logo h1 span { color: #333; }
+        .delivery-location { font-size: 14px; }
+        .search-bar { display: flex; flex: 1; max-width: 500px; }
+        .search-bar input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px 0 0 4px; }
+        .search-btn { background: #800075; color: white; border: none; padding: 0 15px; border-radius: 0 4px 4px 0; cursor: pointer; }
+        .header-actions { display: flex; gap: 15px; align-items: center; }
+        .action-btn { display: flex; flex-direction: column; align-items: center; background: none; border: none; font-size: 12px; cursor: pointer; }
+        .cart-count { background: #800075; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 10px; margin-left: 5px; }
+
+        /* NAV */
+        .secondary-nav { background: #f5f5f5; padding: 10px 0; }
+        .secondary-nav ul { display: flex; list-style: none; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .secondary-nav a { font-weight: 500; }
+        .highlight-pink { color: #800075 !important; }
+
+        /* BREADCRUMB */
+        .breadcrumb { padding: 15px 0; color: #666; }
+        .breadcrumb a { color: #800075; }
+
+        /* CATEGORY PAGE */
+        .category-page { padding: 30px 0; }
+        .section-title { text-align: center; margin-bottom: 30px; font-size: 28px; color: #333; }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .category-card { background: white; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .category-card:hover { transform: translateY(-5px); }
+        .category-card h3 { margin-top: 10px; }
+
+        /* CATEGORY DETAIL */
+        .category-banner img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
+        .category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+        .sort-options { display: flex; align-items: center; gap: 10px; }
+        .sort-options select { padding: 5px; border: 1px solid #ccc; border-radius: 4px; }
+
+        /* PRODUCTS */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        .product-card { background: white; border-radius: 8px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 12px; }
+        .product-card h3 { font-size: 16px; margin: 10px 0 8px; }
+        .price { font-weight: 600; color: #800075; font-size: 18px; }
+        .orig-price { text-decoration: line-through; color: #999; font-size: 14px; }
+        .badge { background: #ff6b6b; color: white; font-size: 12px; padding: 2px 6px; border-radius: 4px; margin-top: 5px; display: inline-block; }
+
+        /* WHATSAPP BUTTON */
+        .btn-buy {
+            background-color: #800075;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        .btn-buy:hover {
+            background-color: #6a0060;
+        }
+
+        /* WHATSAPP BANNER */
+        .whatsapp-order-section { background: #eef7ff; padding: 30px 0; margin-top: 40px; }
+        .whatsapp-banner { display: flex; align-items: center; gap: 20px; background: white; padding: 20px; border-radius: 8px; }
+        .whatsapp-icon svg { width: 48px; height: 48px; }
+        .whatsapp-content h3 { margin-bottom: 8px; }
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+        .footer { background: #333; color: white; padding: 40px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .footer-column h3 { margin-bottom: 15px; font-size: 18px; }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 8px; }
+        .footer-column a { color: #ddd; }
+        .social-links { margin-top: 15px; }
+        .social-links a { display: inline-block; width: 30px; height: 30px; background: #555; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #555; color: #aaa; }
+
+        .trust-badges { display: flex; justify-content: center; gap: 30px; background: #f0f0f0; padding: 10px; font-weight: 500; }
+
+        /* UTILITIES */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <p>Welcome to Cairo Family Hospital – Kenya's Trusted Online Pharmacy | Free Delivery on Orders Over KSh 1,500</p>
+    </div>
+    <!-- Main Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>CAIRO<span>FAMILY HOSPITAL</span></h1>
+                </div>
+                <div class="delivery-location">
+                    <span>Deliver to</span>
+                    <strong>Ruiru & Countrywide</strong>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for medicines, health conditions, brands..." />
+                    <button class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>Account</span>
+                    </button>
+                    <button class="action-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        <span>Wishlist</span>
+                    </button>
+                    <button class="action-btn cart-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span>Cart</span>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Secondary Navigation -->
+    <nav class="secondary-nav">
+        <div class="container">
+            <ul>
+                <li><a href="category.html">Shop by Category</a></li>
+                <li><a href="#">Shop by Condition</a></li>
+                <li><a href="category.html?section=offers">Offers</a></li>
+                <li>
+                    <a href="https://wa.me/254758833863?text=Hi%20Cairo%20Family%20Hospital,%20I%20would%20like%20to%20submit%20my%20prescription." target="_blank">
+                        Submit a Prescription +
+                    </a>
+                </li>
+                <li><a href="#" class="highlight-pink">My Health Centre</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / <span id="category-breadcrumb">Shop by Category</span>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <section class="category-page">
+        <div class="container">
+            <div id="category-landing" class="category-grid">
+                <!-- Filled by JS -->
+            </div>
+            <div id="category-detail" class="hidden">
+                <!-- Category banner inserted by JS -->
+                <div class="category-header">
+                    <h2 id="category-name">Category Name</h2>
+                    <div class="sort-options">
+                        <label>Sort by:</label>
+                        <select id="sort-select">
+                            <option value="default">Newest</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="products-grid" id="products-container">
+                    <!-- Products rendered here -->
+                </div>
+                <div class="whatsapp-order-section">
+                    <div class="container">
+                        <div class="whatsapp-banner">
+                            <div class="whatsapp-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="#25D366">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                            </div>
+                            <div class="whatsapp-content">
+                                <h3>Can’t Find Your Medicine?</h3>
+                                <p>No problem! Send us a message directly on WhatsApp and we’ll help you find it or order it for you.</p>
+                                <a href="#" class="whatsapp-btn" id="category-whatsapp-link">
+                                    Order via WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>CAIRO FAMILY HOSPITAL</h3>
+                    <p>Kenya's trusted online pharmacy delivering quality healthcare products to your doorstep.</p>
+                    <h5>Address</h5>
+                    <p>Plot No. Ayaan Kwa Kairu,<br>Thome Road, Ruiru,<br>Kiambu County, Kenya</p>
+                    <p>📞 +254 758 833 863</p>
+                    <p>📧 info@cairofamilyhospital.com</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter">t</a>
+                        <a href="#" aria-label="Instagram">i</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Our Partners</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Delivery</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Online Pharmacy</a></li>
+                        <li><a href="#">Teleconsultations</a></li>
+                        <li><a href="#">Prescription Services</a></li>
+                        <li><a href="#">Health Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cairo Family Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div class="trust-badges">
+        <div class="trust-badge">✅ Pharmacy and Poisons Board Licensed</div>
+        <div class="trust-badge">🔒 SSL Secure Transactions</div>
+        <div class="trust-badge">💯 100% Genuine Medicines</div>
+    </div>
+
+    <script>
+        // ===== ALL CATEGORIES DATA (from your file) =====
+        const allCategories = {
+            'pain-relief': { name: 'Pain Relief', products: [/* ... */] },
+            'cold-flu': { name: 'Cold & Flu', products: [/* ... */] },
+            'vitamins': { name: 'Vitamins & Supplements', products: [/* ... */] },
+            'diabetes': { name: 'Diabetes Care', products: [/* ... */] },
+            'hypertension': { name: 'Hypertension & Heart Health', products: [/* ... */] },
+            'digestive': { name: 'Digestive Health', products: [/* ... */] },
+            'personal-care': { name: 'Personal Care', products: [/* ... */] },
+            'beauty': { name: 'Beauty & Skin Care', products: [/* ... */] },
+            'devices': { name: 'Medical Devices', products: [/* ... */] },
+            'first-aid': { name: 'First Aid & Antiseptics', products: [/* ... */] }
+        };
+
+        // Populate full product data (from your original)
+        Object.assign(allCategories, {
+            'pain-relief': {
+                name: 'Pain Relief',
+                products: [
+                    {name: 'Panadol 500mg (GSK)', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Brufen 400mg (Roche)', price: 420, orig: 550, badge: '-24%'},
+                    {name: 'Voltaren Emulgel 20g', price: 850, orig: 1000, badge: '-15%'},
+                    {name: 'Aspirin 100mg (Bayer)', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Diclofenac 50mg', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Nurofen 200mg', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Paracetamol Syrup 100ml', price: 420, orig: 500, badge: '-16%'},
+                    {name: 'Mobic 15mg (Boehringer)', price: 1200, orig: 1500, badge: '-20%'},
+                    {name: 'Celebrex 200mg', price: 2200, orig: 2800, badge: '-21%'},
+                    {name: 'Tramadol 50mg', price: 550, orig: 700, badge: '-21%'},
+                    {name: 'Flexon Tablet', price: 620, orig: 800, badge: '-22%'},
+                    {name: 'Ponstan 500mg', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Indomethacin 25mg', price: 340, orig: 420, badge: '-19%'},
+                    {name: 'Ketoprofen 100mg', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Naproxen 250mg', price: 360, orig: 450, badge: '-20%'},
+                    {name: 'Arthrotec 75', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Meloxicam 15mg', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Piroxicam 20mg', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Etodolac 400mg', price: 920, orig: 1100, badge: '-16%'},
+                    {name: 'Sulindac 200mg', price: 1100, orig: 1300, badge: '-15%'},
+                    {name: 'Tolmetin 400mg', price: 980, orig: 1200, badge: '-18%'},
+                    {name: 'Oxaprozin 600mg', price: 1400, orig: 1700, badge: '-18%'},
+                    {name: 'Fenoprofen 600mg', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Mefenamic Acid 500mg', price: 520, orig: 650, badge: '-20%'},
+                    {name: 'Benzydamine Spray', price: 750, orig: 900, badge: '-17%'}
+                ]
+            },
+            'cold-flu': {
+                name: 'Cold & Flu',
+                products: [
+                    {name: 'Vicks Cough Syrup 200ml', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Corex DX Syrup', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'Duro-Tuss Night Syrup', price: 850, orig: 1000, badge: '-15%'},
+                    {name: 'Codral Cold & Flu', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Actifed Tablet', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Benylin Mucus Cough', price: 780, orig: 950, badge: '-18%'},
+                    {name: 'Robitussin DM', price: 950, orig: 1200, badge: '-21%'},
+                    {name: 'Theraflu Hot Drink', price: 620, orig: 800, badge: '-22%'},
+                    {name: 'Strepsils Lozenges', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Halls Cough Drops', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Olbas Oil Inhalant', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Sinutab Tablet', price: 580, orig: 720, badge: '-19%'},
+                    {name: 'Tylenol Cold Multi-Symptom', price: 820, orig: 1000, badge: '-18%'},
+                    {name: 'NyQuil Liquid', price: 920, orig: 1100, badge: '-16%'},
+                    {name: 'DayQuil Capsules', price: 880, orig: 1050, badge: '-16%'},
+                    {name: 'Mucinex Tablet', price: 1200, orig: 1500, badge: '-20%'},
+                    {name: 'Fluimucil 200mg', price: 980, orig: 1200, badge: '-18%'},
+                    {name: 'Rhinocort Nasal Spray', price: 1400, orig: 1700, badge: '-18%'},
+                    {name: 'Otrivin Nasal Drops', price: 520, orig: 650, badge: '-20%'},
+                    {name: 'Beconase Nasal Spray', price: 1600, orig: 1900, badge: '-16%'},
+                    {name: 'Piriton Syrup', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Zyrtec Tablet', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Claritin Tablet', price: 980, orig: 1200, badge: '-18%'},
+                    {name: 'Telfast 180mg', price: 1100, orig: 1300, badge: '-15%'},
+                    {name: 'Xyzal Tablet', price: 1300, orig: 1600, badge: '-19%'}
+                ]
+            },
+            'vitamins': {
+                name: 'Vitamins & Supplements',
+                products: [
+                    {name: 'Redoxon Vitamin C 1000mg', price: 1250, orig: 1500, badge: '-17%'},
+                    {name: 'Seven Seas Multivitamin', price: 1900, orig: 2300, badge: '-17%'},
+                    {name: 'Zincovit Zinc + Vitamins', price: 920, orig: 1400, badge: '-34%'},
+                    {name: 'Caltrate Calcium + D3', price: 1450, orig: 1800, badge: '-19%'},
+                    {name: 'Seven Seas Omega-3 Fish Oil', price: 2300, orig: 2900, badge: '-21%'},
+                    {name: 'Folic Acid 5mg', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Vitamin D3 1000IU', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Becosules Capsules', price: 620, orig: 800, badge: '-22%'},
+                    {name: 'Neurobion Forte', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Revital H', price: 1100, orig: 1300, badge: '-15%'},
+                    {name: 'Supradyn Energy', price: 1400, orig: 1700, badge: '-18%'},
+                    {name: 'Centrum Advance', price: 2200, orig: 2800, badge: '-21%'},
+                    {name: 'Glucon-D Energy Powder', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Horlicks Health & Nutrition', price: 980, orig: 1200, badge: '-18%'},
+                    {name: 'Ensure Nutritional Powder', price: 2800, orig: 3500, badge: '-20%'},
+                    {name: 'Protinex Powder', price: 2200, orig: 2800, badge: '-21%'},
+                    {name: 'Bournvita Health Mix', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Complan NutriGro', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'Livogen Z Capsules', price: 780, orig: 950, badge: '-18%'},
+                    {name: 'Fefol Z Capsules', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Nervigen Capsules', price: 820, orig: 1000, badge: '-18%'},
+                    {name: 'MecobalActive Capsules', price: 920, orig: 1100, badge: '-16%'},
+                    {name: 'Enerzol Multivitamin', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'HealthVit Vitamin C', price: 1100, orig: 1300, badge: '-15%'},
+                    {name: 'Now Foods Omega-3', price: 2600, orig: 3200, badge: '-19%'}
+                ]
+            },
+            'diabetes': {
+                name: 'Diabetes Care',
+                products: [
+                    {name: 'Accu-Chek Active Test Strips (50s)', price: 3200, orig: 3800, badge: '-16%'},
+                    {name: 'Accu-Chek Guide Me Glucose Monitor', price: 5600, orig: 7600, badge: '-26%'},
+                    {name: 'OneTouch Select Plus Glucometer', price: 4800, orig: 6500, badge: '-26%'},
+                    {name: 'Contour Next Test Strips (50s)', price: 3400, orig: 4000, badge: '-15%'},
+                    {name: 'Metformin 500mg', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Glucophage 850mg', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Glibenclamide 5mg', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Gliclazide 80mg', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Pioglitazone 15mg', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Sitagliptin 100mg', price: 1200, orig: 1500, badge: '-20%'},
+                    {name: 'Januvia 100mg', price: 2200, orig: 2800, badge: '-21%'},
+                    {name: 'Empagliflozin 10mg', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Jardiance 25mg', price: 2800, orig: 3500, badge: '-20%'},
+                    {name: 'Liraglutide Injection', price: 8500, orig: 10000, badge: '-15%'},
+                    {name: 'Victoza Pen', price: 9200, orig: 11000, badge: '-16%'},
+                    {name: 'Insulin Glargine 100IU/ml', price: 3200, orig: 4000, badge: '-20%'},
+                    {name: 'Lantus SoloStar Pen', price: 4200, orig: 5200, badge: '-19%'},
+                    {name: 'Humalog KwikPen', price: 4800, orig: 6000, badge: '-20%'},
+                    {name: 'NovoRapid FlexPen', price: 4500, orig: 5500, badge: '-18%'},
+                    {name: 'Diabetes Care Kit', price: 6800, orig: 8500, badge: '-20%'},
+                    {name: 'Sugar-Free Sweetener', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Diabetic Foot Cream', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Glucose Tablets', price: 520, orig: 650, badge: '-20%'},
+                    {name: 'Blood Glucose Diary', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Diabetes Management Guide', price: 480, orig: 600, badge: '-20%'}
+                ]
+            },
+            'hypertension': {
+                name: 'Hypertension & Heart Health',
+                products: [
+                    {name: 'Amlodipine 5mg', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Norvasc 10mg', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Lisinopril 10mg', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Losartan 50mg', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Atenolol 50mg', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Metoprolol 50mg', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Valsartan 80mg', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Telmisartan 40mg', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Ramipril 5mg', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Captopril 25mg', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Hydrochlorothiazide 25mg', price: 240, orig: 300, badge: '-20%'},
+                    {name: 'Furosemide 40mg', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Spironolactone 25mg', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Digoxin 0.25mg', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Warfarin 5mg', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Aspirin Cardio 100mg', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Clopidogrel 75mg', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Atorvastatin 20mg', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Lipitor 40mg', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Rosuvastatin 10mg', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Crestor 20mg', price: 1200, orig: 1500, badge: '-20%'},
+                    {name: 'Omega-3 Fish Oil', price: 2300, orig: 2900, badge: '-21%'},
+                    {name: 'CoQ10 Supplement', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Garlic Capsules', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'Hawthorn Extract', price: 1100, orig: 1300, badge: '-15%'}
+                ]
+            },
+            'digestive': {
+                name: 'Digestive Health',
+                products: [
+                    {name: 'Gaviscon Advance Liquid', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Omeprazole 20mg', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Losec Capsules', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Pantoprazole 40mg', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Ranitidine 150mg', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Lactulose Syrup', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Duphalac Syrup', price: 820, orig: 1000, badge: '-18%'},
+                    {name: 'Buscopan Tablet', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Colpermin Capsules', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'Imodium Capsules', price: 580, orig: 720, badge: '-19%'},
+                    {name: 'Entrocalm Tablet', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Normet Suspension', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Flagyl 400mg', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Metronidazole 200mg', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Ciprofloxacin 500mg', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Norfloxacin 400mg', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Pepto-Bismol Liquid', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Mylanta Suspension', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Rennie Antacid Tablets', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Tums Chewable Tablets', price: 520, orig: 650, badge: '-20%'},
+                    {name: 'Probiotic Capsules', price: 2600, orig: 3100, badge: '-16%'},
+                    {name: 'Yogurt Probiotic Powder', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Digestive Enzymes', price: 1400, orig: 1700, badge: '-18%'},
+                    {name: 'Psyllium Husk Powder', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'Isabgol Husk', price: 420, orig: 520, badge: '-19%'}
+                ]
+            },
+            'personal-care': {
+                name: 'Personal Care',
+                products: [
+                    {name: 'Dettol Hand Sanitizer 500ml', price: 470, orig: 600, badge: '-22%'},
+                    {name: 'Savlon Antiseptic Cream', price: 580, orig: 700, badge: '-17%'},
+                    {name: 'Nivea Soft Moisturizing Lotion', price: 1550, orig: 1900, badge: '-18%'},
+                    {name: 'Vaseline Petroleum Jelly', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Dove Beauty Bar', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Lifebuoy Soap', price: 180, orig: 220, badge: '-18%'},
+                    {name: 'Lux Soap', price: 220, orig: 270, badge: '-19%'},
+                    {name: 'Pears Soap', price: 240, orig: 300, badge: '-20%'},
+                    {name: 'Johnson’s Baby Shampoo', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Sebamed Baby Wash', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'Himalaya Baby Cream', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Cetaphil Gentle Cleanser', price: 1400, orig: 1700, badge: '-18%'},
+                    {name: 'E45 Cream', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Aveeno Moisturizing Lotion', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Neutrogena Body Oil', price: 1600, orig: 1900, badge: '-16%'},
+                    {name: 'O’Keeffe’s Working Hands', price: 1200, orig: 1500, badge: '-20%'},
+                    {name: 'Blistex Lip Balm', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Carmex Lip Balm', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Listerine Mouthwash', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Colgate Total Toothpaste', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Sensodyne Toothpaste', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Oral-B Toothbrush', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Gillette Razor Blades', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Schick Razor Blades', price: 620, orig: 800, badge: '-22%'},
+                    {name: 'Nivea Men Shaving Foam', price: 520, orig: 650, badge: '-20%'}
+                ]
+            },
+            'beauty': {
+                name: 'Beauty & Skin Care',
+                products: [
+                    {name: 'Neutrogena Sunscreen SPF 50', price: 1850, orig: 2500, badge: '-26%'},
+                    {name: 'Cetaphil Daily Facial Cleanser', price: 1400, orig: 1700, badge: '-18%'},
+                    {name: 'Olay Regenerist Cream', price: 2200, orig: 2800, badge: '-21%'},
+                    {name: 'Nivea Q10 Anti-Wrinkle Cream', price: 1550, orig: 1900, badge: '-18%'},
+                    {name: 'Pond’s Cold Cream', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Garnier Micellar Water', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'L’Oreal Paris Serum', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'The Ordinary Niacinamide', price: 1600, orig: 1900, badge: '-16%'},
+                    {name: 'CeraVe Moisturizing Cream', price: 2200, orig: 2800, badge: '-21%'},
+                    {name: 'La Roche-Posay Toleriane', price: 2600, orig: 3200, badge: '-19%'},
+                    {name: 'Vichy Mineral 89', price: 2800, orig: 3500, badge: '-20%'},
+                    {name: 'Kiehl’s Ultra Facial Cream', price: 3200, orig: 4000, badge: '-20%'},
+                    {name: 'Clinique Moisture Surge', price: 3800, orig: 4800, badge: '-21%'},
+                    {name: 'Estée Lauder Advanced Night Repair', price: 6800, orig: 8500, badge: '-20%'},
+                    {name: 'MAC Lipstick', price: 2200, orig: 2800, badge: '-21%'},
+                    {name: 'Maybelline Foundation', price: 1400, orig: 1700, badge: '-18%'},
+                    {name: 'L’Oreal Paris Mascara', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'NYX Eyeshadow Palette', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Revlon Lip Gloss', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Wella Hair Shampoo', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'Pantene Pro-V Conditioner', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Head & Shoulders Anti-Dandruff', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Dove Hair Fall Rescue', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Tresemme Keratin Smooth', price: 780, orig: 950, badge: '-18%'},
+                    {name: 'L’Oreal Elvive Full Resist', price: 920, orig: 1150, badge: '-20%'}
+                ]
+            },
+            'devices': {
+                name: 'Medical Devices',
+                products: [
+                    {name: 'Omron Blood Pressure Monitor', price: 4800, orig: 5800, badge: '-17%'},
+                    {name: 'Accu-Chek Guide Me Glucose Monitor', price: 5600, orig: 7600, badge: '-26%'},
+                    {name: 'OneTouch Select Plus Glucometer', price: 4800, orig: 6500, badge: '-26%'},
+                    {name: 'Digital Thermometer', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'Braun Ear Thermometer', price: 2200, orig: 2800, badge: '-21%'},
+                    {name: 'Beurer Pulse Oximeter', price: 3200, orig: 4000, badge: '-20%'},
+                    {name: 'Contec Pulse Oximeter', price: 2800, orig: 3500, badge: '-20%'},
+                    {name: 'Nebulizer Machine', price: 6800, orig: 8500, badge: '-20%'},
+                    {name: 'Steam Inhaler', price: 3200, orig: 4000, badge: '-20%'},
+                    {name: 'Digital Weighing Scale', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Body Fat Analyzer', price: 2800, orig: 3500, badge: '-20%'},
+                    {name: 'TENS Pain Relief Machine', price: 4200, orig: 5200, badge: '-19%'},
+                    {name: 'Heating Pad', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Cold Pack Gel', price: 880, orig: 1100, badge: '-20%'},
+                    {name: 'First Aid Kit', price: 2900, orig: 4200, badge: '-31%'},
+                    {name: 'Cairo Family First Aid Kit', price: 2900, orig: 4200, badge: '-31%'},
+                    {name: 'Face Masks (50 Pack)', price: 800, orig: 1000, badge: '-20%'},
+                    {name: 'N95 Respirator Masks', price: 1800, orig: 2200, badge: '-18%'},
+                    {name: 'Latex Gloves (100 pcs)', price: 920, orig: 1150, badge: '-20%'},
+                    {name: 'Non-Latex Gloves', price: 1100, orig: 1300, badge: '-15%'},
+                    {name: 'Cotton Wool 500g', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Gauze Swabs (100 pcs)', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Adhesive Bandages', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Micropore Tape', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Scissors & Tweezers Set', price: 680, orig: 850, badge: '-20%'}
+                ]
+            },
+            'first-aid': {
+                name: 'First Aid & Antiseptics',
+                products: [
+                    {name: 'Savlon Antiseptic Cream', price: 580, orig: 700, badge: '-17%'},
+                    {name: 'Betadine Antiseptic Solution', price: 620, orig: 900, badge: '-31%'},
+                    {name: 'Dettol Antiseptic Liquid', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Hydrogen Peroxide 6%', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Alcohol Swabs (100 pcs)', price: 380, orig: 450, badge: '-16%'},
+                    {name: 'Cotton Buds 200 pcs', price: 280, orig: 350, badge: '-20%'},
+                    {name: 'Burn Relief Cream', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Antibiotic Ointment', price: 650, orig: 850, badge: '-24%'},
+                    {name: 'Antiseptic Cream', price: 550, orig: 700, badge: '-21%'},
+                    {name: 'Antifungal Cream', price: 620, orig: 800, badge: '-22%'},
+                    {name: 'Hydrocortisone Cream', price: 580, orig: 720, badge: '-19%'},
+                    {name: 'Calamine Lotion', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Antihistamine Cream', price: 520, orig: 650, badge: '-20%'},
+                    {name: 'Pain Relief Gel', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Muscle Rub Cream', price: 720, orig: 900, badge: '-20%'},
+                    {name: 'Eye Wash Solution', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Saline Nasal Spray', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Throat Lozenges', price: 320, orig: 400, badge: '-20%'},
+                    {name: 'Cough Suppressant', price: 580, orig: 720, badge: '-19%'},
+                    {name: 'Decongestant Spray', price: 680, orig: 850, badge: '-20%'},
+                    {name: 'Allergy Relief Tablets', price: 950, orig: 1300, badge: '-27%'},
+                    {name: 'Motion Sickness Tablets', price: 420, orig: 520, badge: '-19%'},
+                    {name: 'Insect Repellent Spray', price: 520, orig: 650, badge: '-20%'},
+                    {name: 'After Bite Gel', price: 480, orig: 600, badge: '-20%'},
+                    {name: 'Sunburn Relief Spray', price: 720, orig: 900, badge: '-20%'}
+                ]
+            }
+        });
+
+        // ===== MAIN LOGIC =====
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const catKey = urlParams.get("cat");
+            const landingEl = document.getElementById("category-landing");
+            const detailEl = document.getElementById("category-detail");
+            const breadcrumbEl = document.getElementById("category-breadcrumb");
+
+            if (!catKey || !allCategories[catKey]) {
+                // Show landing grid
+                landingEl.classList.remove("hidden");
+                detailEl.classList.add("hidden");
+                breadcrumbEl.textContent = "Shop by Category";
+                document.title = "Shop by Category – Cairo Family Hospital";
+
+                let html = `<h2 class="section-title">Shop by Category</h2><div class="categories-grid">`;
+                for (const [key, data] of Object.entries(allCategories)) {
+                    html += `
+                        <a href="category.html?cat=${key}" class="category-card">
+                            <div class="category-icon">💊</div>
+                            <h3>${data.name}</h3>
+                        </a>`;
+                }
+                html += `</div>`;
+                landingEl.innerHTML = html;
+                return;
+            }
+
+            // Show category detail
+            const category = allCategories[catKey];
+            landingEl.classList.add("hidden");
+            detailEl.classList.remove("hidden");
+            breadcrumbEl.innerHTML = `Home / Shop by Category / <strong>${category.name}</strong>`;
+            document.title = `${category.name} – Cairo Family Hospital`;
+            document.getElementById("category-name").textContent = category.name;
+
+            // ===== CATEGORY BANNER =====
+            const banner = document.createElement("div");
+            banner.className = "category-banner";
+            const img = document.createElement("img");
+            const imagePath = `img/${catKey}.jpg`;
+            img.src = imagePath;
+            img.alt = `${category.name} medicines`;
+            img.onerror = () => { img.src = "img/category.webp"; };
+            banner.appendChild(img);
+            detailEl.insertBefore(banner, detailEl.firstChild);
+
+            // ===== WHATSAPP CATEGORY LINK =====
+            const catWaLink = document.getElementById("category-whatsapp-link");
+            const catMessage = `Hi Cairo Family Hospital, I'm looking for a medicine in ${category.name} but can't find it. Please assist.`;
+            catWaLink.href = `https://wa.me/254758833863?text=${encodeURIComponent(catMessage)}`;
+
+            // ===== RENDER PRODUCTS =====
+            const container = document.getElementById("products-container");
+            function renderProducts(list) {
+                container.innerHTML = list.map(product => {
+                    const waMessage = `Hello, I would like to buy ${product.name} from the ${category.name} category.`;
+                    const waUrl = `https://wa.me/254758833863?text=${encodeURIComponent(waMessage)}`;
+                    return `
+                        <div class="product-card">
+                            <img src="${imagePath}" alt="${product.name}" onerror="this.src='img/category.webp'">
+                            <h3>${product.name}</h3>
+                            <p class="price">KSh ${product.price.toLocaleString()}</p>
+                            ${product.orig ? `<p class="orig-price"><s>KSh ${product.orig.toLocaleString()}</s></p>` : ''}
+                            ${product.badge ? `<span class="badge">${product.badge}</span>` : ''}
+                            <a href="${waUrl}" target="_blank" class="btn-buy">View Cart</a>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            renderProducts(category.products);
+
+            // ===== SORTING =====
+            document.getElementById("sort-select").addEventListener("change", (e) => {
+                let sorted = [...category.products];
+                switch(e.target.value) {
+                    case "price-asc": sorted.sort((a, b) => a.price - b.price); break;
+                    case "price-desc": sorted.sort((a, b) => b.price - a.price); break;
+                    default: sorted = [...category.products];
+                }
+                renderProducts(sorted);
+            });
+        });
+    </script>
+</body>
+</html>

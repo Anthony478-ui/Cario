@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cairo Family Hospital - Hybrid Retailer & Medical Supplier</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Cairo Family Hospital, medical supplies, wholesale pharmacy, Ruiru, Kenya, hospital equipment, clinic supplies, Cairo Family Hospital" name="keywords">
+    <meta content="Cairo Family Hospital supplies quality medical products and pharmaceuticals to clinics, pharmacies, and healthcare providers in Ruiru and across Kenya." name="description">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet"> 
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+     <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* WhatsApp Floating Button with Online Indicator */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        .whatsapp-button {
+            background-color: #25D366;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-button-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .whatsapp-icon {
+            font-size: 30px;
+            color: white;
+        }
+        .online-indicator {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 12px;
+            height: 12px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            border: 2px solid white;
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        /* WhatsApp Services Selection Box */
+        .whatsapp-services {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 280px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 15px;
+            z-index: 1000;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .chat-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .chat-bubble {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 18px;
+            margin-left: 12px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+        }
+        .whatsapp-services label {
+            display: flex;
+            align-items: center;
+            border: 2px solid #800075;
+            border-radius: 25px;
+            padding: 6px 10px;
+            color: #800075;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }
+        .whatsapp-services input[type="checkbox"] {
+            display: none;
+        }
+        .whatsapp-services input[type="checkbox"]:checked + span {
+            background-color: #800075;
+            color: white;
+            border-radius: 20px;
+            padding: 4px 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        #whatsappConfirm {
+            background-color: #800075;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 9px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s ease;
+            text-align: center;
+        }
+        #whatsappConfirm:hover {
+            background-color: #6a006a;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero-supply {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/supply-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+        }
+        .hero-supply h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .hero-supply p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Product & Service Cards */
+        .supply-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .supply-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(128, 0, 117, 0.15);
+        }
+        .supply-card-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        .supply-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .supply-card:hover .supply-card-img img {
+            transform: scale(1.1);
+        }
+        .supply-card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .supply-card h5 {
+            color: #800075;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        .supply-card p {
+            font-size: 0.95rem;
+            color: #555;
+            flex: 1;
+        }
+        .btn-supply {
+            background-color: #800075;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.2s ease;
+        }
+        .btn-supply:hover {
+            background-color: #6a006a;
+            transform: scale(1.03);
+        }
+
+        /* Testimonial */
+        .testimonial-bg {
+            background: #f9f4f8;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin: 50px 0;
+            text-align: center;
+        }
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid #800075;
+        }
+        .testimonial-quote {
+            font-style: italic;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        .testimonial-author {
+            color: #800075;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
+        <div class="row gx-0 align-items-center" style="height: 45px;">
+            <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+                <div class="d-flex flex-wrap">
+                    <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Ruiru Gwa Cairo</a>
+                    <a href="tel:0728697219" class="text-light me-4"><i class="fas fa-phone-alt text-primary me-2"></i>0728 697 219</a>
+                    <a href="tel:+254758833863" class="text-light me-0"><i class="fas fa-phone-alt text-primary me-2"></i>+254 758 833 863</a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <div class="d-flex align-items-center justify-content-end">
+                    <a href="https://www.facebook.com/profile.php?id=100094585454733" class="btn btn-light btn-square border rounded-circle nav-fill me-3" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@cairo.family.hosp" class="btn btn-light btn-square border rounded-circle nav-fill me-3" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/cairo_family_hospital?igsh=bmVicmp4ZXVxYjRy" class="btn btn-light btn-square border rounded-circle nav-fill me-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    <!-- Navbar & Hero Start -->
+    <!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
+    <a href="index.html" class="navbar-brand p-0 d-flex align-items-center">
+        <img src="img/cairo.jpg" alt="Cairo Family Hospital Logo" height="70">
+        <span class="text-primary h1 mb-0 ms-2"><i class="fas fa-star-of-life me-2"></i>Cairo Family Hospital</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+            <a href="index.html" class="nav-item nav-link">Home</a>
+            <a href="about.html" class="nav-item nav-link">About Us</a>
+            <a href="service.html" class="nav-item nav-link">Services</a>
+            <a href="medicine.html" class="nav-item nav-link">Pharmacy</a>
+            <a href="hybrid-retailer.html" class="nav-item nav-link active">Hybrid Retailer</a>
+            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            <a href="order.html" class="nav-item nav-link">Order</a>
+        </div>
+    </div>
+        <a href="https://wa.me/254758833863?text=Hello%20Cairo%20Family%20Hospital,%20I%20would%20like%20to%20book%20an%20appointment." class="btn btn-primary rounded-pill text-white py-2 px-4" target="_blank">Book Appointment</a>
+    </div>
+</nav>
+<!-- Navbar End -->
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Hybrid Retailer</h3>
+                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active text-primary">Hybrid Retailer</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Header End -->
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Hero Section -->
+    <section class="hero-supply text-center">
+        <div class="container">
+            <h1>Medical Supplies & Wholesale Distribution</h1>
+            <p>Trusted by clinics, pharmacies, and healthcare providers across Ruiru and Kenya.</p>
+            <a href="https://wa.me/254758833863?text=Hello%20Cairo%20Family%20Hospital,%20I%20would%20like%20to%20inquire%20about%20medical%20supplies." class="btn btn-success btn-lg rounded-pill px-5">Inquire via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="container py-5" id="products">
+        <div class="section-title text-center mb-5">
+            <h2 class="display-6">Our Medical Supply Categories</h2>
+            <p>High-quality products for clinics, pharmacies, and hospitals.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- Category: Medical Consumables -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/medical consumables.jpeg" alt="Medical Consumables">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Medical Consumables</h5>
+                        <p>Gloves, syringes, IV sets, gauze, masks, and other disposable supplies.</p>
+                        <button class="btn-supply" onclick="inquireProduct('Medical Consumables')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Category: Diagnostic Equipment -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/Diagnostic22.jpeg" alt="Diagnostic Equipment">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Diagnostic Equipment</h5>
+                        <p>Blood pressure machines, thermometers, glucometers, test kits, and more.</p>
+                        <button class="btn-supply" onclick="inquireProduct('Diagnostic Equipment')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Category: Infection Control -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/Infection control.jpeg" alt="Infection Control">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Infection Control</h5>
+                        <p>Hand sanitizers, disinfectants, PPE kits, and sterilization supplies.</p>
+                        <button class="btn-supply" onclick="inquireProduct('Infection Control')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Category: Surgical & Wound Care -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/surgical care.png" alt="Surgical & Wound Care">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Surgical & Wound Care</h5>
+                        <p>Sutures, bandages, antiseptics, gauze, and surgical tapes.</p>
+                        <button class="btn-supply" onclick="inquireProduct('Surgical & Wound Care')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Category: Laboratory Supplies -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/Lab supplies.jpeg" alt="Laboratory Supplies">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Laboratory Supplies</h5>
+                        <p>Test tubes, reagents, specimen containers, and lab tools.</p>
+                        <button class="btn-supply" onclick="inquireProduct('Laboratory Supplies')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Category: Pharmaceuticals (Wholesale) -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/Pharmaceutical wholesale.jpg" alt="Pharmaceuticals">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Pharmaceuticals (Wholesale)</h5>
+                        <p>OTC meds, antibiotics (for licensed buyers), painkillers, and chronic meds.</p>
+                        <button class="btn-supply" onclick="inquireProduct('Pharmaceuticals - Wholesale')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Category: Baby & Maternity Care -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/Bbay and maternity care.jpeg" alt="Baby & Maternity Care">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Baby & Maternity Care</h5>
+                        <p>Diapers, baby powders, oils, and maternity support supplies.</p>
+                        <button class="btn-supply" onclick="inquireProduct('Baby & Maternity Care')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Category: First Aid Kits -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/First aid.jpeg" alt="First Aid Kits">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>First Aid Kits</h5>
+                        <p>Pre-packed kits for clinics, schools, and workplaces.</p>
+                        <button class="btn-supply" onclick="inquireProduct('First Aid Kits')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container py-5" id="services">
+        <div class="section-title text-center mb-5">
+            <h2 class="display-6">Our Services for Clinics & Pharmacies</h2>
+            <p>Supporting healthcare providers with reliable supply and service.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- Service: Bulk Supply Delivery -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/bulk.jpg" alt="Bulk Delivery">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Bulk Supply Delivery</h5>
+                        <p>Fast, reliable delivery across Ruiru, Thika, Nairobi, and beyond.</p>
+                        <button class="btn-supply" onclick="inquireService('Bulk Supply Delivery')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Service: Clinic Setup Support -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/clinic setup hospital-interior-.jpg" alt="Clinic Setup">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Clinic Setup Support</h5>
+                        <p>We help new clinics source essential equipment and medicines.</p>
+                        <button class="btn-supply" onclick="inquireService('Clinic Setup Support')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Service: Prescription Fulfillment -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/Precriptions.png" alt="Prescription Fulfillment">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>Prescription Fulfillment</h5>
+                        <p>Partner clinics can refer prescriptions for fulfillment at our pharmacy.</p>
+                        <button class="btn-supply" onclick="inquireService('Prescription Fulfillment')">Inquire via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Service: 24/7 Support -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="supply-card">
+                    <div class="supply-card-img">
+                        <img src="img/customer ccaree.png" alt="24/7 Support">
+                    </div>
+                    <div class="supply-card-body">
+                        <h5>24/7 WhatsApp Support</h5>
+                        <p>Urgent supply needs? Chat with us anytime for fast response.</p>
+                        <a href="https://wa.me/254758833863" target="_blank" class="btn-supply">Chat Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="container testimonial-bg">
+        <img src="img/testimonial user 2.png" alt="Dr. Muthoni" class="testimonial-avatar">
+        <p class="testimonial-quote">
+            "Cairo Family Hospital supplies me with quality meds and equipment at great prices — fast, reliable, and professional. Highly recommended for any healthcare provider in Ruiru or countrywide."
+        </p>
+        <p class="testimonial-author">— Johnstone   Muriu</p>
+    </section>
+
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="text-white mb-4"><i class="fas fa-star-of-life me-3"></i>Cairo Family Hospital</h4>
+                        <p>Your trusted partner in healthcare, providing quality services for every stage of life.</p>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-share fa-2x text-white me-2"></i>
+                            <a class="btn btn-square btn-primary text-white rounded-circle mx-1" href="https://www.facebook.com/profile.php?id=100094585454733" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary text-white rounded-circle mx-1" href="https://www.tiktok.com/@cairo.family.hosp" target="_blank"><i class="fab fa-tiktok"></i></a>
+                            <a class="btn btn-square btn-primary text-white rounded-circle mx-1" href="https://www.instagram.com/cairo_family_hospital?igsh=bmVicmp4ZXVxYjRy" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Quick Links</h4>
+                        <a href="about.html"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                        <a href="service.html"><i class="fas fa-angle-right me-2"></i> Our Services</a>
+                        <a href="medicine.html"><i class="fas fa-angle-right me-2"></i> Pharmacy</a>
+                        <a href="hybrid-retailer.html"><i class="fas fa-angle-right me-2"></i> Hybrid Retailer</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Product Categories</h4>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Medical Consumables</a>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Diagnostic Equipment</a>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Infection Control</a>
+                        <a href="#"><i class="fas fa-angle-right me-2"></i> Pharmaceuticals</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Contact Info</h4>
+                        <a href="#"><i class="fa fa-map-marker-alt me-2"></i> Ruiru Gwa Cairo</a>
+                        <a href="mailto:info@cairohospital.co.ke"><i class="fas fa-envelope me-2"></i> info@cairohospital.co.ke</a>
+                        <a href="tel:0728697219"><i class="fas fa-phone me-2"></i> 0728 697 219</a>
+                        <a href="tel:+254758833863"><i class="fas fa-phone me-2"></i> +254 758 833 863</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-md-0">
+                    <span class="text-white"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Cairo Family Hospital</a>, All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <button class="whatsapp-button" id="whatsappToggle">
+            <div class="whatsapp-button-container">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                <span class="online-indicator"></span>
+            </div>
+        </button>
+        <div class="whatsapp-services" id="whatsappServices">
+            <div class="chat-header">
+                <div class="whatsapp-button-container">
+                    <i class="fab fa-whatsapp whatsapp-icon"></i>
+                    <span class="online-indicator"></span>
+                </div>
+                <div class="chat-bubble">How can we help you today?</div>
+            </div>
+            <label><input type="checkbox" value="Medical Consumables"><span>Medical Consumables</span></label>
+            <label><input type="checkbox" value="Diagnostic Equipment"><span>Diagnostic Equipment</span></label>
+            <label><input type="checkbox" value="Infection Control"><span>Infection Control</span></label>
+            <label><input type="checkbox" value="Pharmaceuticals"><span>Pharmaceuticals</span></label>
+            <label><input type="checkbox" value="Bulk Supply"><span>Bulk Supply</span></label>
+            <label><input type="checkbox" value="Clinic Setup"><span>Clinic Setup</span></label>
+            <label><input type="checkbox" value="Prescription Fulfillment"><span>Prescription Fulfillment</span></label>
+            <button id="whatsappConfirm">Confirm Selection</button>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- Inquire Functions -->
+    <script>
+        function inquireProduct(category) {
+            const message = encodeURIComponent(`Hello Cairo Family Hospital,
+I would like to inquire about:
+- ${category}
+
+Please share available options, pricing, and delivery terms.
+Thank you!`);
+            window.open(`https://wa.me/254758833863?text=${message}`, '_blank');
+        }
+
+        function inquireService(service) {
+            const message = encodeURIComponent(`Hello Cairo Family Hospital,
+I would like to inquire about your:
+- ${service}
+
+Please share details and pricing.
+Thank you!`);
+            window.open(`https://wa.me/254758833863?text=${message}`, '_blank');
+        }
+    </script>
+
+    <!-- WhatsApp Service Selection Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('whatsappToggle');
+            const servicesBox = document.getElementById('whatsappServices');
+            const confirmBtn = document.getElementById('whatsappConfirm');
+
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                servicesBox.style.display = servicesBox.style.display === 'block' ? 'none' : 'block';
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!toggleBtn.contains(e.target) && !servicesBox.contains(e.target)) {
+                    servicesBox.style.display = 'none';
+                }
+            });
+
+            servicesBox.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            confirmBtn.addEventListener('click', () => {
+                const selected = Array.from(servicesBox.querySelectorAll('input[type="checkbox"]:checked'))
+                    .map(cb => cb.value)
+                    .join(', ');
+                if (selected) {
+                    const message = encodeURIComponent(`Hello Cairo Family Hospital,
+I'm interested in: ${selected}
+Name: 
+Phone: 
+Thank you!`);
+                    window.open(`https://wa.me/254758833863?text=${message}`, '_blank');
+                    servicesBox.style.display = 'none';
+                } else {
+                    alert("Please select at least one service.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
