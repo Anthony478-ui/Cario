@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Hero Academy - Cairo Dental Hospital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hospital-brand {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4facfe;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .game-screen {
+            padding: 30px;
+            min-height: 500px;
+            display: none;
+        }
+
+        .game-screen.active {
+            display: block;
+        }
+
+        .menu-screen {
+            text-align: center;
+        }
+
+        .menu-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .menu-btn, .game-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .game-btn {
+            background: #4facfe;
+            color: white;
+            margin: 10px;
+        }
+
+        .game-btn:hover {
+            background: #3b8bdb;
+        }
+
+        .tooth-display {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tooth {
+            width: 60px;
+            height: 80px;
+            background: #ffffff;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px 15px 25px 25px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+
+        .tooth.healthy {
+            background: #e8f5e8;
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+
+        .tooth.cavity {
+            background: #ffebee;
+            border-color: #f44336;
+            color: #f44336;
+        }
+
+        .tooth.plaque {
+            background: #fff8e1;
+            border-color: #ff9800;
+            color: #ff9800;
+        }
+
+        .tooth:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .game-area {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            border-color: #4facfe;
+            background: #f0f8ff;
+        }
+
+        .quiz-option.correct {
+            background: #e8f5e8;
+            border-color: #4caf50;
+        }
+
+        .quiz-option.wrong {
+            background: #ffebee;
+            border-color: #f44336;
+        }
+
+        .achievement {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+            animation: achievement-popup 2s ease;
+        }
+
+        @keyframes achievement-popup {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .enemy {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #f44336;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .enemy:hover {
+            transform: scale(1.2);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #4facfe;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .tooth-display {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>🦷 Dental Hero Academy</h1>
+            <div class="hospital-brand">Powered by Cairo Dental Hospital</div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-value" id="score">0</div>
+                <div class="stat-label">Score</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="level">1</div>
+                <div class="stat-label">Level</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="health">100</div>
+                <div class="stat-label">Oral Health %</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="achievements">0</div>
+                <div class="stat-label">Achievements</div>
+            </div>
+        </div>
+
+        <!-- Menu Screen -->
+        <div class="game-screen active" id="menu">
+            <div class="menu-screen">
+                <h2>Welcome, Future Dental Hero! 🚀</h2>
+                <p style="margin: 20px 0; font-size: 1.1em; color: #666;">
+                    Master the art of dental care through fun games and challenges!
+                </p>
+                
+                <div class="menu-buttons">
+                    <button class="menu-btn" onclick="startGame('battle')">
+                        ⚔️ Battle Cavities<br>
+                        <small>Fight dental enemies</small>
+                    </button>
+                    <button class="menu-btn" onclick="startGame('quiz')">
+                        🧠 Knowledge Quest<br>
+                        <small>Test your dental IQ</small>
+                    </button>
+                    <button class="menu-btn" onclick="startGame('clinic')">
+                        🏥 Clinic Simulator<br>
+                        <small>Run your dental practice</small>
+                    </button>
+                    <button class="menu-btn" onclick="startGame('makeover')">
+                        ✨ Smile Makeover<br>
+                        <small>Design perfect smiles</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle Game -->
+        <div class="game-screen" id="battle">
+            <h2>🛡️ Defend Your Teeth!</h2>
+            <div class="instructions">
+                <strong>Mission:</strong> Click on cavity monsters and plaque enemies to eliminate them before they damage your teeth!
+            </div>
+            
+            <div class="tooth-display" id="toothGrid"></div>
+            
+            <div class="game-area" id="battleArea">
+                <div style="text-align: center; padding: 50px;">
+                    <p style="font-size: 1.2em; margin-bottom: 20px;">Enemies incoming! Click to defend!</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="battleProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="game-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        </div>
+
+        <!-- Quiz Game -->
+        <div class="game-screen" id="quiz">
+            <h2>🧠 Dental Knowledge Challenge</h2>
+            <div class="instructions">
+                <strong>Test your knowledge:</strong> Answer dental health questions to level up your expertise!
+            </div>
+            
+            <div class="game-area">
+                <div id="quizContent">
+                    <div style="text-align: center; padding: 50px;">
+                        <p style="font-size: 1.2em;">Loading your first challenge...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="game-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        </div>
+
+        <!-- Clinic Simulator -->
+        <div class="game-screen" id="clinic">
+            <h2>🏥 Your Dental Clinic</h2>
+            <div class="instructions">
+                <strong>Be the dentist:</strong> Diagnose and treat patients to build your reputation!
+            </div>
+            
+            <div class="game-area">
+                <div id="clinicContent" style="text-align: center;">
+                    <div style="margin: 30px 0;">
+                        <h3>Patient #<span id="patientNumber">1</span> has arrived!</h3>
+                        <div style="font-size: 3em; margin: 20px 0;">😰</div>
+                        <p id="patientComplaint">My tooth hurts when I eat sweets...</p>
+                    </div>
+                    
+                    <div style="margin: 30px 0;">
+                        <h4>Choose your diagnosis:</h4>
+                        <div class="quiz-options" id="diagnosisOptions"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="game-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        </div>
+
+        <!-- Smile Makeover -->
+        <div class="game-screen" id="makeover">
+            <h2>✨ Smile Makeover Studio</h2>
+            <div class="instructions">
+                <strong>Create the perfect smile:</strong> Help patients achieve their dream smiles!
+            </div>
+            
+            <div class="game-area" style="text-align: center;">
+                <div style="margin: 30px 0;">
+                    <h3>Before & After</h3>
+                    <div style="display: flex; justify-content: space-around; align-items: center; margin: 30px 0;">
+                        <div>
+                            <h4>Before</h4>
+                            <div style="font-size: 3em; margin: 10px;">😬</div>
+                            <p>Crooked, stained teeth</p>
+                        </div>
+                        <div style="font-size: 2em;">→</div>
+                        <div>
+                            <h4>After Treatment</h4>
+                            <div style="font-size: 3em; margin: 10px;">😁</div>
+                            <p>Perfect, bright smile!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin: 30px 0;">
+                    <h4>Treatment Options:</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectTreatment('braces')">
+                            🦷 Braces<br><small>Straighten crooked teeth</small>
+                        </div>
+                        <div class="quiz-option" onclick="selectTreatment('whitening')">
+                            ✨ Whitening<br><small>Remove stains</small>
+                        </div>
+                        <div class="quiz-option" onclick="selectTreatment('cleaning')">
+                            🪥 Deep Cleaning<br><small>Remove plaque buildup</small>
+                        </div>
+                        <div class="quiz-option" onclick="selectTreatment('crown')">
+                            👑 Crown<br><small>Restore damaged teeth</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="game-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>🎉 Ready for Your Real Dental Adventure?</h3>
+            <p>You've mastered the game - now let our expert team at Cairo Dental Hospital take care of your real smile!</p>
+            <button class="cta-btn" onclick="bookAppointment()">📅 Book Your Appointment</button>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.9;">
+                Professional care • Latest technology • Gentle treatment
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let gameState = {
+            score: 0,
+            level: 1,
+            health: 100,
+            achievements: 0,
+            currentQuiz: 0,
+            patientCount: 1
+        };
+
+        // Quiz Questions
+        const quizQuestions = [
+            {
+                question: "How many times should you brush your teeth daily?",
+                options: ["Once", "Twice", "Three times", "Only when dirty"],
+                correct: 1,
+                explanation: "Brushing twice daily helps remove plaque and prevent cavities!"
+            },
+            {
+                question: "What's the main cause of tooth decay?",
+                options: ["Sugar", "Bacteria", "Age", "Genetics"],
+                correct: 1,
+                explanation: "Bacteria in your mouth feed on sugar and produce acid that damages teeth."
+            },
+            {
+                question: "How long should you brush your teeth?",
+                options: ["30 seconds", "1 minute", "2 minutes", "5 minutes"],
+                correct: 2,
+                explanation: "2 minutes ensures thorough cleaning of all tooth surfaces!"
+            },
+            {
+                question: "What's the best way to prevent gum disease?",
+                options: ["Avoid cold drinks", "Floss daily", "Eat more candy", "Brush once a week"],
+                correct: 1,
+                explanation: "Daily flossing removes plaque between teeth where your toothbrush can't reach!"
+            },
+            {
+                question: "When should you replace your toothbrush?",
+                options: ["Every year", "Every 6 months", "Every 3 months", "When it breaks"],
+                correct: 2,
+                explanation: "Every 3 months or after being sick - old brushes become less effective!"
+            }
+        ];
+
+        // Patient Cases
+        const patientCases = [
+            {
+                complaint: "My tooth hurts when I eat sweets...",
+                options: ["Cavity", "Sensitivity", "Gum disease", "Normal"],
+                correct: 0,
+                treatment: "Fill the cavity and recommend less sugar intake"
+            },
+            {
+                complaint: "My gums bleed when I brush...",
+                options: ["Cavity", "Broken tooth", "Gingivitis", "Nothing wrong"],
+                correct: 2,
+                treatment: "Deep cleaning and improved oral hygiene routine"
+            },
+            {
+                complaint: "I have bad breath that won't go away...",
+                options: ["Cavity", "Gum disease", "Dry mouth", "All possible"],
+                correct: 3,
+                treatment: "Comprehensive examination to identify the root cause"
+            }
+        ];
+
+        function updateStats() {
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('level').textContent = gameState.level;
+            document.getElementById('health').textContent = gameState.health;
+            document.getElementById('achievements').textContent = gameState.achievements;
+        }
+
+        function showScreen(screenName) {
+            document.querySelectorAll('.game-screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenName).classList.add('active');
+        }
+
+        function startGame(gameType) {
+            showScreen(gameType);
+            
+            switch(gameType) {
+                case 'battle':
+                    initBattleGame();
+                    break;
+                case 'quiz':
+                    initQuizGame();
+                    break;
+                case 'clinic':
+                    initClinicGame();
+                    break;
+                case 'makeover':
+                    // Makeover game is already set up in HTML
+                    break;
+            }
+        }
+
+        function initBattleGame() {
+            const toothGrid = document.getElementById('toothGrid');
+            const battleArea = document.getElementById('battleArea');
+            
+            // Create tooth grid
+            toothGrid.innerHTML = '';
+            for(let i = 0; i < 16; i++) {
+                const tooth = document.createElement('div');
+                tooth.className = 'tooth healthy';
+                tooth.innerHTML = '😁';
+                tooth.onclick = () => healTooth(tooth);
+                toothGrid.appendChild(tooth);
+            }
+            
+            // Start spawning enemies
+            spawnEnemies();
+            
+            // Update progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                document.getElementById('battleProgress').style.width = progress + '%';
+                
+                if(progress >= 100) {
+                    clearInterval(progressInterval);
+                    winBattle();
+                }
+            }, 200);
+        }
+
+        function spawnEnemies() {
+            const battleArea = document.getElementById('battleArea');
+            
+            setInterval(() => {
+                if(document.getElementById('battle').classList.contains('active')) {
+                    const enemy = document.createElement('div');
+                    enemy.className = 'enemy';
+                    enemy.innerHTML = Math.random() > 0.5 ? '🦠' : '🟤';
+                    enemy.style.left = Math.random() * 80 + '%';
+                    enemy.style.top = Math.random() * 60 + '%';
+                    enemy.onclick = () => destroyEnemy(enemy);
+                    
+                    battleArea.appendChild(enemy);
+                    
+                    // Remove enemy after 3 seconds if not clicked
+                    setTimeout(() => {
+                        if(enemy.parentNode) {
+                            enemy.remove();
+                            damageRandomTooth();
+                        }
+                    }, 3000);
+                }
+            }, 1500);
+        }
+
+        function destroyEnemy(enemy) {
+            enemy.remove();
+            gameState.score += 10;
+            updateStats();
+            
+            // Add achievement
+            if(gameState.score % 100 === 0) {
+                showAchievement("Enemy Slayer! 100 points earned!");
+                gameState.achievements++;
+            }
+        }
+
+        function damageRandomTooth() {
+            const teeth = document.querySelectorAll('.tooth.healthy');
+            if(teeth.length > 0) {
+                const randomTooth = teeth[Math.floor(Math.random() * teeth.length)];
+                randomTooth.className = 'tooth cavity';
+                randomTooth.innerHTML = '😰';
+                gameState.health -= 5;
+                updateStats();
+            }
+        }
+
+        function healTooth(tooth) {
+            if(tooth.classList.contains('cavity')) {
+                tooth.className = 'tooth healthy';
+                tooth.innerHTML = '😁';
+                gameState.score += 5;
+                gameState.health = Math.min(100, gameState.health + 2);
+                updateStats();
+            }
+        }
+
+        function winBattle() {
+            showAchievement("Battle Won! You've protected your teeth!");
+            gameState.level++;
+            gameState.achievements++;
+            gameState.score += 50;
+            updateStats();
+        }
+
+        function initQuizGame() {
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            const quizContent = document.getElementById('quizContent');
+            const currentQ = quizQuestions[gameState.currentQuiz % quizQuestions.length];
+            
+            quizContent.innerHTML = `
+                <div style="text-align: center;">
+                    <h3>Question ${gameState.currentQuiz + 1}</h3>
+                    <p style="font-size: 1.2em; margin: 30px 0;">${currentQ.question}</p>
+                    <div class="quiz-options" id="quizOptions">
+                        ${currentQ.options.map((option, index) => 
+                            `<div class="quiz-option" onclick="answerQuiz(${index})">${option}</div>`
+                        ).join('')}
+                    </div>
+                    <div id="quizResult" style="margin-top: 20px;"></div>
+                </div>
+            `;
+        }
+
+        function answerQuiz(selectedIndex) {
+            const currentQ = quizQuestions[gameState.currentQuiz % quizQuestions.length];
+            const options = document.querySelectorAll('#quizOptions .quiz-option');
+            const result = document.getElementById('quizResult');
+            
+            options.forEach((option, index) => {
+                option.style.pointerEvents = 'none';
+                if(index === currentQ.correct) {
+                    option.classList.add('correct');
+                } else if(index === selectedIndex && index !== currentQ.correct) {
+                    option.classList.add('wrong');
+                }
+            });
+            
+            if(selectedIndex === currentQ.correct) {
+                result.innerHTML = `<div class="achievement">Correct! ${currentQ.explanation}</div>`;
+                gameState.score += 20;
+                gameState.achievements++;
+            } else {
+                result.innerHTML = `<div style="background: #ffebee; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                    Incorrect. ${currentQ.explanation}
+                </div>`;
+            }
+            
+            updateStats();
+            
+            setTimeout(() => {
+                gameState.currentQuiz++;
+                loadQuizQuestion();
+            }, 3000);
+        }
+
+        function initClinicGame() {
+            loadPatientCase();
+        }
+
+        function loadPatientCase() {
+            const currentCase = patientCases[gameState.patientCount % patientCases.length];
+            document.getElementById('patientNumber').textContent = gameState.patientCount;
+            document.getElementById('patientComplaint').textContent = currentCase.complaint;
+            
+            const diagnosisOptions = document.getElementById('diagnosisOptions');
+            diagnosisOptions.innerHTML = currentCase.options.map((option, index) =>
+                `<div class="quiz-option" onclick="diagnosePatient(${index})">${option}</div>`
+            ).join('');
+        }
+
+        function diagnosePatient(diagnosisIndex) {
+            const currentCase = patientCases[gameState.patientCount % patientCases.length];
+            const options = document.querySelectorAll('#diagnosisOptions .quiz-option');
+            
+            options.forEach((option, index) => {
+                option.style.pointerEvents = 'none';
+                if(index === currentCase.correct) {
+                    option.classList.add('correct');
+                } else if(index === diagnosisIndex && index !== currentCase.correct) {
+                    option.classList.add('wrong');
+                }
+            });
+            
+            setTimeout(() => {
+                if(diagnosisIndex === currentCase.correct) {
+                    showAchievement(`Excellent diagnosis! Treatment: ${currentCase.treatment}`);
+                    gameState.score += 30;
+                    gameState.achievements++;
+                } else {
+                    showAchievement(`Good try! Correct treatment: ${currentCase.treatment}`);
+                }
+                
+                gameState.patientCount++;
+                updateStats();
+                
+                setTimeout(() => {
+                    loadPatientCase();
+                }, 2000);
+            }, 1000);
+        }
+
+        function selectTreatment(treatment) {
+            const treatments = {
+                braces: "Great choice! Braces will straighten those teeth perfectly!",
+                whitening: "Excellent! Whitening will restore that bright smile!",
+                cleaning: "Perfect! Deep cleaning removes harmful plaque buildup!",
+                crown: "Smart choice! A crown will protect and restore the tooth!"
+            };
+            
+            showAchievement(treatments[treatment]);
+            gameState.score += 25;
+            gameState.achievements++;
+            updateStats();
+        }
+
+        function showAchievement(message) {
+            const achievement = document.createElement('div');
+            achievement.className = 'achievement';
+            achievement.textContent = message;
+            
+            const activeScreen = document.querySelector('.game-screen.active .game-area');
+            if(activeScreen) {
+                activeScreen.appendChild(achievement);
+                
+                setTimeout(() => {
+                    achievement.remove();
+                }, 3000);
+            }
+        }
+
+        function bookAppointment() {
+            alert("🎉 Congratulations on completing Dental Hero Academy!\n\n" +
+                  "Ready to take the next step? Contact Cairo Dental Hospital:\n" +
+                  "📞 Call: [Your Phone Number]\n" +
+                  "🌐 Visit: [Your Website]\n" +
+                  "📧 Email: [Your Email]\n\n" +
+                  "Mention this game for a special discount on your first visit!");
+        }
+
+        // Initialize game
+        updateStats();
+        
+        // Auto-save progress
+        setInterval(() => {
+            localStorage.setItem('dentalHeroProgress', JSON.stringify(gameState));
+        }, 30000);
+        
+        // Load saved progress
+        const savedProgress = localStorage.getItem('dentalHeroProgress');
+        if(savedProgress) {
+            gameState = {...gameState, ...JSON.parse(savedProgress)};
+            updateStats();
+        }
+    </script>
+</body>
+</html>

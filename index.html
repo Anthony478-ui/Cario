@@ -316,131 +316,137 @@
     <!-- Topbar End -->
 
     <!-- Navbar & Hero Start -->
-    <div class="position-relative p-0">
-      <nav
-        class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0"
-      >
-        <a href="index.html" class="navbar-brand p-0 d-flex align-items-center">
-          <img
-            src="img/cairo.jpg"
-            alt="Cairo Family Hospital Logo"
-            height="50"
-          />
-          <span class="text-primary h1 mb-0 ms-2"
-            ><i class="fas fa-star-of-life me-2"></i>Cairo Family Hospital</span
-          >
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarCollapse"
+    <!-- <div class="position-relative p-0"> -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0"
+    >
+      <a href="index.html" class="navbar-brand p-0 d-flex align-items-center">
+        <span class="text-primary h1 mb-0 ms-2"
+          ><i class="fas fa-star-of-life me-2"></i>Cairo Family Hospital</span
         >
-          <span class="fa fa-bars"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <div class="navbar-nav ms-auto py-0">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
-            <a href="order.html" class="nav-item nav-link">Order</a>
-            <a href="medicine.html" class="nav-item nav-link">Pharmacy</a>
-            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-            <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="service.html" class="nav-item nav-link">Services</a>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <a href="index.html" class="nav-item nav-link active">Home</a>
+          <a href="order.html" class="nav-item nav-link">Order</a>
+          <a href="medicine.html" class="nav-item nav-link">Pharmacy</a>
+          <a href="game-hub.html" class="nav-item nav-link">Game Hub</a>
+          <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+          <a href="about.html" class="nav-item nav-link">About</a>
+          <a href="service.html" class="nav-item nav-link">Services</a>
 
-            <a href="hybrid-retailer.html" class="nav-item nav-link"
-              >Hybrid Retailer</a
-            >
-          </div>
+          <a href="hybrid-retailer.html" class="nav-item nav-link"
+            >Hybrid Retailer</a
+          >
+          <!-- Small-screen copy of the appointment button: visible only on xs (d-sm-none) -->
           <a
             href="https://wa.me/254758833863?text=Hello%20Cairo%20Family%20Hospital,%20I%20would%20like%20to%20book%20an%20appointment."
-            class="btn btn-primary rounded-pill text-white py-2 px-4"
+            class="btn btn-primary rounded-pill text-white py-2 px-4 d-sm-none w-100 mt-2"
             target="_blank"
+            aria-label="Book Appointment"
             >Book Appointment</a
           >
         </div>
-      </nav>
+      </div>
+      <!-- Keep the appointment action outside the collapsible menu so it's always visible -->
+      <a
+        href="https://wa.me/254758833863?text=Hello%20Cairo%20Family%20Hospital,%20I%20would%20like%20to%20book%20an%20appointment."
+        class="btn btn-primary rounded-pill text-white py-2 px-4 book-appointment d-none d-sm-inline-block"
+        target="_blank"
+        aria-label="Book Appointment"
+        >Book Appointment</a
+      >
+    </nav>
 
-      <!-- Carousel Start -->
-      <div class="header-carousel owl-carousel">
-        <div class="header-carousel-item">
-          <img
-            src="img/Abou1.png"
-            class="img-fluid w-100"
-            alt="Cairo Family Hospital"
-          />
-          <div class="carousel-caption">
-            <div class="carousel-caption-content p-3">
-              <h5
-                class="text-white text-uppercase fw-bold mb-4"
-                style="letter-spacing: 3px"
+    <!-- Carousel Start -->
+    <div class="header-carousel owl-carousel">
+      <div class="header-carousel-item">
+        <img
+          src="img/Abou1.png"
+          class="img-fluid w-100"
+          alt="Cairo Family Hospital"
+        />
+        <div class="carousel-caption">
+          <div class="carousel-caption-content p-3">
+            <h5
+              class="text-white text-uppercase fw-bold mb-4"
+              style="letter-spacing: 3px"
+            >
+              Cairo Family Hospital Ruiru Ltd
+            </h5>
+            <h1 class="display-1 text-capitalize text-white mb-4">
+              Your Trusted Partner in Family-Centered Healthcare
+            </h1>
+            <p class="mb-5 fs-5 text-white">
+              Providing safe, compassionate, and affordable care since June
+              2024.<br />
+              Level 3B Licensed Facility | Kiambu County | Patient-Centered
+              Excellence
+            </p>
+            <div>
+              <a
+                class="btn btn-primary rounded-pill text-white py-3 px-5 me-3"
+                href="about.html"
+                >About Us</a
               >
-                Cairo Family Hospital Ruiru Ltd
-              </h5>
-              <h1 class="display-1 text-capitalize text-white mb-4">
-                Your Trusted Partner in Family-Centered Healthcare
-              </h1>
-              <p class="mb-5 fs-5 text-white">
-                Providing safe, compassionate, and affordable care since June
-                2024.<br />
-                Level 3B Licensed Facility | Kiambu County | Patient-Centered
-                Excellence
-              </p>
-              <div>
-                <a
-                  class="btn btn-primary rounded-pill text-white py-3 px-5 me-3"
-                  href="about.html"
-                  >About Us</a
-                >
-                <a
-                  class="btn btn-light rounded-pill text-primary py-3 px-5"
-                  href="service.html"
-                  >Our Services</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="header-carousel-item">
-          <img
-            src="img/Kenyan doc 1 (2).png"
-            class="img-fluid w-100"
-            alt="Compassionate Care"
-          />
-          <div class="carousel-caption">
-            <div class="carousel-caption-content p-3">
-              <h5
-                class="text-white text-uppercase fw-bold mb-4"
-                style="letter-spacing: 3px"
+              <a
+                class="btn btn-light rounded-pill text-primary py-3 px-5"
+                href="service.html"
+                >Our Services</a
               >
-                Compassionate & Professional Care
-              </h5>
-              <h1 class="display-1 text-capitalize text-white mb-4">
-                Expert Care for Every Family Member
-              </h1>
-              <p class="mb-5 fs-5 text-white">
-                From pediatrics to chronic disease management, we’re here for
-                you.<br />
-                Ambulance referrals, telemedicine, and in-house pharmacy
-                available.
-              </p>
-              <div>
-                <a
-                  class="btn btn-primary rounded-pill text-white py-3 px-5 me-3"
-                  href="service.html"
-                  >View Services</a
-                >
-                <a
-                  class="btn btn-light rounded-pill text-primary py-3 px-5"
-                  href="contact.html"
-                  >Contact Us</a
-                >
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Carousel End -->
+      <div class="header-carousel-item">
+        <img
+          src="img/Kenyan doc 1 (2).png"
+          class="img-fluid w-100"
+          alt="Compassionate Care"
+        />
+        <div class="carousel-caption">
+          <div class="carousel-caption-content p-3">
+            <h5
+              class="text-white text-uppercase fw-bold mb-4"
+              style="letter-spacing: 3px"
+            >
+              Compassionate & Professional Care
+            </h5>
+            <h1 class="display-1 text-capitalize text-white mb-4">
+              Expert Care for Every Family Member
+            </h1>
+            <p class="mb-5 fs-5 text-white">
+              From pediatrics to chronic disease management, we’re here for
+              you.<br />
+              Ambulance referrals, telemedicine, and in-house pharmacy
+              available.
+            </p>
+            <div>
+              <a
+                class="btn btn-primary rounded-pill text-white py-3 px-5 me-3"
+                href="service.html"
+                >View Services</a
+              >
+              <a
+                class="btn btn-light rounded-pill text-primary py-3 px-5"
+                href="contact.html"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Carousel End -->
+    <!-- </div> -->
     <!-- Navbar & Hero End -->
 
     <!-- WhatsApp Floating Button -->
